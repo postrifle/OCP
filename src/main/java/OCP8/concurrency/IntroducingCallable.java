@@ -18,13 +18,13 @@ public class IntroducingCallable {
             });
 //            Callable as an argument(return), so there is no need try/catch block
             service.submit(()->{Thread.sleep(1000); return 42;});
-            service = Executors.newSingleThreadExecutor();
             Future<Integer> result = service.submit(() -> {
                 Thread.sleep(5000);
                 return 41 + 1;
             });
             System.out.println(result.get());
         } finally {
+            System.out.println("finally");
             if (service != null) {
                 service.shutdown();
             }

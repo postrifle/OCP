@@ -7,6 +7,7 @@ public class IntroducingCallable {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService service = null;
         try {
+            service = Executors.newSingleThreadExecutor();
 //            Runnable as an argument, so try/catch block is needed
             service.submit(()-> {
                 try {

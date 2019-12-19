@@ -7,6 +7,16 @@ public class IntroducingCallable {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService service = null;
         try {
+//            Runnable as an argument, so try/catch block is needed
+            service.submit(()-> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+//            Callable as an argument(return), so there is no need try/catch block
+            service.submit(()->{Thread.sleep(1000); return 42;});
             service = Executors.newSingleThreadExecutor();
             Future<Integer> result = service.submit(() -> {
                 Thread.sleep(5000);
